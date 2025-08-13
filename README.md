@@ -186,8 +186,8 @@ The Seed-X-PPO-7B model is licensed under OpenMDW.
 
 ## Acknowledgments
 
-- [ByteDance Seed Team](https://github.com/ByteDance/Seed) for the Seed-X-PPO-7B model
-- [Mungert](https://huggingface.co/Mungert) for GGUF quantization on Hugging Face
+- [ByteDance Seed Team](https://huggingface.co/ByteDance-Seed/Seed-X-PPO-7B) for the Seed-X-PPO-7B model
+- [Mungert](https://huggingface.co/Mungert/Seed-X-PPO-7B-GGUF) for GGUF quantization on Hugging Face
 - [llama.cpp](https://github.com/ggerganov/llama.cpp) for GGUF support
 - [Hugging Face](https://huggingface.co/) for model hosting
 
