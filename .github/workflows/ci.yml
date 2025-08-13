@@ -79,9 +79,45 @@ jobs:
         import sys, os
         sys.path.insert(0, 'src')
         os.environ['QT_QPA_PLATFORM'] = 'offscreen'
-        from src.gui.translator_app import QApplication
+        from src.gui.translator_app import QApplication, TranslatorApp
         app = QApplication([])
-        print('GUI components import successful')
+        print('QApplication created successfully')
+
+        # Test main application window creation
+        main_window = TranslatorApp()
+        print('TranslatorApp window created successfully')
+
+        # Test basic functionality
+        assert hasattr(main_window, 'translation_manager')
+        assert hasattr(main_window, 'source_combo')
+        assert hasattr(main_window, 'target_combo')
+        print('Main window components verified')
+
+        # Test window can be shown (but not actually shown in headless)
+        main_window.show()
+        print('Window show() method works')
+
+        # Clean up
+        main_window.close()
+        app.quit()
+        print('Application startup test completed successfully')
+        "
+      if: runner.os != 'macOS'  # Skip on macOS due to Qt issues in CI
+
+    - name: Test main.py execution (headless)
+      run: |
+        python -c "
+        import sys, os
+        sys.path.insert(0, '.')
+        os.environ['QT_QPA_PLATFORM'] = 'offscreen'
+
+        # Test that main.py can be imported and executed
+        import main
+        print('main.py import successful')
+
+        # Test main function exists
+        assert hasattr(main, 'main'), 'main() function not found'
+        print('main() function found')
         "
       if: runner.os != 'macOS'  # Skip on macOS due to Qt issues in CI
 
