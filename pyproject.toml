@@ -44,7 +44,6 @@ target-version = "py310"
 select = ["E4", "E7", "E9", "F", "W", "C90"]
 ignore = [
     "E203",  # whitespace before ':'
-    "W503",  # line break before binary operator
     "E501",  # line too long (handled by formatter)
 ]
 
