@@ -1,66 +1,66 @@
 # Seed-X Translation GUI
 
-Profesjonalna aplikacja GUI w Pythonie do korzystania z modelu tłumaczeniowego Seed-X-PPO-7B.
+Professional Python GUI application for using the Seed-X-PPO-7B translation model.
 
-## Funkcje
+## Features
 
-- Obsługa tłumaczeń między 28 językami
-- Nowoczesny interfejs GUI z PyQt6
-- Wielowątkowe ładowanie modelu i tłumaczenie (nieblokujący UI)
-- Tryb Chain-of-Thought (CoT) z szczegółowymi wyjaśnieniami
-- Regulowane parametry generowania (temperatura, top-p, top-k, itp.)
-- Historia tłumaczeń z funkcją eksportu/importu
-- Dokowane panele dla ustawień i historii
-- Trwałe ustawienia aplikacji
-- Skróty klawiszowe dla częstych akcji
-- Automatyczne pobieranie modeli z Hugging Face
-- Obsługa GPU (CUDA) dla szybkich tłumaczeń
+- Support for translations between 28 languages
+- Modern GUI interface with PyQt6
+- Multi-threaded model loading and translation (non-blocking UI)
+- Chain-of-Thought (CoT) mode with detailed explanations
+- Adjustable generation parameters (temperature, top-p, top-k, etc.)
+- Translation history with export/import functionality
+- Dockable panels for settings and history
+- Persistent application settings
+- Keyboard shortcuts for frequent actions
+- Automatic model downloading from Hugging Face
+- GPU (CUDA) support for fast translations
 
 ## Backends
 
-Aplikacja obsługuje dwa backendy:
+The application supports two backends:
 
-1. **GGUF (llama.cpp)** - Zalecany dla większości użytkowników
-   - Używa skwantyzowanych modeli GGUF
-   - Niższe zużycie pamięci
-   - Dobra wydajność na CPU i GPU
-   - Działa na Windows
+1. **GGUF (llama.cpp)** - Recommended for most users
+   - Uses quantized GGUF models
+   - Lower memory usage
+   - Good performance on CPU and GPU
+   - Works on Windows
 
-2. **Transformers** - Dla oryginalnych modeli
-   - Używa modeli pełnej precyzji
-   - Wyższe zużycie pamięci
-   - Najlepsza jakość
-   - Działa na Windows z CUDA
+2. **Transformers** - For original models
+   - Uses full precision models
+   - Higher memory usage
+   - Best quality
+   - Works on Windows with CUDA
 
-## Wymagania
+## Requirements
 
 - Python 3.8+
-- GPU z obsługą CUDA (zalecane) lub CPU (wolniejsze)
-- Co najmniej 8GB RAM (16GB zalecane)
-- Około 5GB miejsca na dysku dla modelu Q4_K_M
+- GPU with CUDA support (recommended) or CPU (slower)
+- At least 8GB RAM (16GB recommended)
+- About 5GB disk space for Q4_K_M model
 
-## Instalacja
+## Installation
 
-### Opcja 1: Automatyczna instalacja (Zalecana)
+### Option 1: Automatic Installation (Recommended)
 
-**Dla Windows Command Prompt:**
+**For Windows Command Prompt:**
 ```cmd
 install.bat
 ```
 
-**Dla PowerShell:**
+**For PowerShell:**
 ```powershell
 .\install.ps1
 ```
 
-### Opcja 2: Instalacja ręczna
+### Option 2: Manual Installation
 
-1. Utwórz środowisko wirtualne:
+1. Create virtual environment:
 ```bash
 python -m venv venv
 ```
 
-2. Aktywuj środowisko wirtualne:
+2. Activate virtual environment:
 ```bash
 # Windows
 venv\Scripts\activate
@@ -69,100 +69,130 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-3. Zainstaluj wymagane pakiety:
+3. Install required packages:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Użycie
+## Usage
 
-### Szybki start
+### Quick Start
 ```cmd
 run.bat
 ```
 
-### Start ręczny
+### Manual Start
 ```bash
-# Najpierw aktywuj środowisko wirtualne
+# First activate virtual environment
 venv\Scripts\activate
 
-# Uruchom aplikację
-python translator_app.py
+# Run application
+python main.py
 ```
 
-## Pobieranie modeli
+## Model Download
 
-Aplikacja automatycznie wykryje i załaduje dostępne modele. Jeśli nie masz żadnego modelu:
+The application will automatically detect and load available models. If you don't have any models:
 
-1. Uruchom aplikację
-2. Kliknij "Download Model"
-3. Wybierz model (zalecany: Q4_K_M - 4.6GB)
-4. Poczekaj na zakończenie pobierania
-5. Model zostanie automatycznie załadowany
+1. Run the application
+2. Click "Download Model"
+3. Select a model (recommended: Q4_K_M - 4.6GB)
+4. Wait for download to complete
+5. Model will be automatically loaded
 
-### Dostępne modele GGUF:
+### Available GGUF Models:
 
-- **Q4_K_M (4.6GB)** - Zalecany balans jakości/szybkości
-- **Q5_K_M (5.4GB)** - Lepsza jakość, wolniejszy
-- **Q8_0 (8.0GB)** - Najlepsza jakość, wymaga więcej RAM
+- **Q4_K_M (4.6GB)** - Recommended balance of quality/speed
+- **Q5_K_M (5.4GB)** - Better quality, slower
+- **Q8_0 (8.0GB)** - Best quality, requires more RAM
 
-### Model oryginalny (dla Transformers):
+### Original Model (for Transformers):
 
-- **Original Seed-X-PPO-7B (15GB)** - Pełna precyzja, wymaga więcej VRAM
+- **Original Seed-X-PPO-7B (15GB)** - Full precision, requires more VRAM
 
-## Obsługiwane języki
+## Supported Languages
 
-- Arabski (ar), Czeski (cs), Duński (da), Niemiecki (de)
-- Angielski (en), Hiszpański (es), Fiński (fi), Francuski (fr)
-- Chorwacki (hr), Węgierski (hu), Indonezyjski (id), Włoski (it)
-- Japoński (ja), Koreański (ko), Malajski (ms), Norweski Bokmål (nb)
-- Holenderski (nl), Norweski (no), Polski (pl), Portugalski (pt)
-- Rumuński (ro), Rosyjski (ru), Szwedzki (sv), Tajski (th)
-- Turecki (tr), Ukraiński (uk), Wietnamski (vi), Chiński (zh)
+- Arabic (ar), Czech (cs), Danish (da), German (de)
+- English (en), Spanish (es), Finnish (fi), French (fr)
+- Croatian (hr), Hungarian (hu), Indonesian (id), Italian (it)
+- Japanese (ja), Korean (ko), Malay (ms), Norwegian Bokmål (nb)
+- Dutch (nl), Norwegian (no), Polish (pl), Portuguese (pt)
+- Romanian (ro), Russian (ru), Swedish (sv), Thai (th)
+- Turkish (tr), Ukrainian (uk), Vietnamese (vi), Chinese (zh)
 
-## Struktura projektu
+## Project Structure
 
 ```
 TranslatorSeedX/
-├── translator_app.py           # Główna aplikacja GUI
-├── model_handler.py            # Handler dla GGUF (llama.cpp)
-├── model_handler_transformers.py # Handler dla Transformers
-├── config.py                   # Konfiguracja aplikacji
-├── download_missing_files.py   # Skrypt pobierania plików modelu
-├── requirements.txt            # Zależności Python
-├── install.bat                 # Instalator Windows (CMD)
-├── install.ps1                 # Instalator Windows (PowerShell)
-├── run.bat                     # Uruchamianie aplikacji
-├── README.md                   # Ten plik
-├── models/                     # Katalog modeli
-│   └── README.md               # Informacje o modelach
-└── venv/                       # Środowisko wirtualne (po instalacji)
+├── main.py                     # Main entry point
+├── run.bat                     # Windows batch file to run the application
+├── install.bat                 # Installation script
+├── install.ps1                 # PowerShell installation script
+├── requirements.txt            # Python dependencies
+├── README.md                   # Project documentation
+├── .gitignore                  # Git ignore file
+│
+├── src/                        # Source code directory
+│   ├── __init__.py
+│   │
+│   ├── gui/                    # GUI components
+│   │   ├── __init__.py
+│   │   ├── translator_app.py   # Main application window
+│   │   └── filterable_combobox.py  # Custom combo box widget
+│   │
+│   ├── backend/                # Backend logic
+│   │   ├── __init__.py
+│   │   ├── translation_backend.py      # Translation manager and threads
+│   │   ├── model_handler.py            # GGUF model handler (llama.cpp)
+│   │   └── model_handler_transformers.py  # Transformers model handler
+│   │
+│   └── utils/                  # Utility modules
+│       ├── __init__.py
+│       ├── config.py           # Configuration settings
+│       └── download_missing_files.py  # Model download utilities
+│
+└── models/                     # Model storage directory
+    └── README.md               # Model information
 ```
 
-## Rozwiązywanie problemów
+## Troubleshooting
 
-### Model się nie ładuje
-- Sprawdź czy masz wystarczająco RAM/VRAM
-- Spróbuj mniejszego modelu (Q4_K_M zamiast Q8_0)
-- Sprawdź logi w konsoli dla szczegółów błędu
-- Dla modeli Transformers: upewnij się, że masz zainstalowane CUDA
+### Model Won't Load
+- Check if you have enough RAM/VRAM
+- Try a smaller model (Q4_K_M instead of Q8_0)
+- Check console logs for error details
+- For Transformers models: ensure CUDA is installed
 
-### Wolne tłumaczenie
-- Użyj GPU zamiast CPU (sprawdź czy CUDA jest dostępne)
-- Zmniejsz parametr "Max Tokens" w ustawieniach
-- Użyj mniejszego modelu
-- Przełącz na backend Transformers dla lepszej wydajności GPU
+### Slow Translation
+- Use GPU instead of CPU (check if CUDA is available)
+- Reduce "Max Tokens" parameter in settings
+- Use a smaller model
+- Switch to Transformers backend for better GPU performance
 
-### Błędy CUDA
-- Upewnij się, że masz zainstalowany PyTorch z obsługą CUDA
-- Sprawdź czy sterowniki GPU są aktualne
-- Spróbuj reinstalacji PyTorch: `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121`
+### CUDA Errors
+- Ensure you have PyTorch with CUDA support installed
+- Check if GPU drivers are up to date
+- Try reinstalling PyTorch: `pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121`
 
-## Licencja
+## Contributing
 
-Ten projekt używa modelu Seed-X-PPO-7B na licencji OpenMDW.
+We welcome contributions! Please see our [Contributing Guide](https://github.com/Azornes/TranslatorSeedX/wiki/Contributing) for details.
 
-## Autorzy
+## License
 
-Aplikacja GUI stworzona dla modelu Seed-X-PPO-7B od ByteDance.
-Model GGUF skwantyzowany przez Mungert na Hugging Face.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+The Seed-X-PPO-7B model is licensed under OpenMDW.
+
+## Acknowledgments
+
+- [ByteDance Seed Team](https://github.com/ByteDance/Seed) for the Seed-X-PPO-7B model
+- [Mungert](https://huggingface.co/Mungert) for GGUF quantization on Hugging Face
+- [llama.cpp](https://github.com/ggerganov/llama.cpp) for GGUF support
+- [Hugging Face](https://huggingface.co/) for model hosting
+
+## Support
+
+- 🐛 [Report a Bug](https://github.com/Azornes/TranslatorSeedX/issues/new?template=bug_report.md)
+- 💡 [Request a Feature](https://github.com/Azornes/TranslatorSeedX/issues/new?template=feature_request.md)
+- 💬 [Discussions](https://github.com/Azornes/TranslatorSeedX/discussions)
