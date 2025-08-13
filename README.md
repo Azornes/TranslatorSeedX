@@ -34,7 +34,7 @@ The application supports two backends:
 
 ## Requirements
 
-- Python 3.8+
+- Python 3.10+ (due to transformers>=4.51.3 requirement)
 - GPU with CUDA support (recommended) or CPU (slower)
 - At least 8GB RAM (16GB recommended)
 - About 5GB disk space for Q4_K_M model
