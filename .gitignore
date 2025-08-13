@@ -1,0 +1,75 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# PyQt
+*.pyc
+*.pyo
+*.pyd
+.Qt
+*.pro.user
+*.pro.user.*
+*.qmlproject.user
+*.qmlproject.user.*
+*.autosave
+
+# Models - exclude all large model files
+models/*.gguf
+models/*.bin
+models/*.safetensors
+models/*.pt
+models/*.pth
+models/*.h5
+models/*.onnx
+models/*/model.safetensors
+models/*/pytorch_model.bin
+models/*/model.bin
+models/*/tokenizer.model
+models/*/vocab.txt
+models/*/merges.txt
+models/*/special_tokens_map.json
+models/*/tokenizer.json
+models/*/tokenizer_config.json
+models/*/config.json
+models/*/generation_config.json
+models/*/.gitattributes
+models/*/LICENSE
+models/*/README.md
+models/*/imgs/
+!models/README.md
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Application
+*.log
+translation_history.json
+settings.ini
+.settings
+
+# Distribution
+build/
+dist/
+*.egg-info/
+*.spec
+
+# Temporary files
+*.tmp
+*.temp
+*.bak

@@ -1,0 +1,3 @@
+"""
+Seed-X Translation Application
+"""
