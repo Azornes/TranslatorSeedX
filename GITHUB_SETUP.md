@@ -1,6 +1,27 @@
 # Instrukcje dodania projektu do GitHub
 
-## Krok 1: Utwórz repozytorium na GitHub
+## Metoda 1: Automatyczne utworzenie przez skrypty (ZALECANE)
+
+### Opcja A: PowerShell (zalecane)
+1. Uzyskaj Personal Access Token:
+   - Idź na https://github.com/settings/tokens
+   - Kliknij "Generate new token (classic)"
+   - Wybierz scopes: `repo`, `public_repo`
+   - Skopiuj token
+
+2. Uruchom skrypt:
+```powershell
+.\create_github_repo.ps1 -Token YOUR_ACTUAL_TOKEN
+```
+
+### Opcja B: Batch file
+1. Edytuj plik `create_github_repo.bat`
+2. Zamień `YOUR_GITHUB_TOKEN` na swój rzeczywisty token
+3. Uruchom: `create_github_repo.bat`
+
+## Metoda 2: Ręczne utworzenie na GitHub
+
+### Krok 1: Utwórz repozytorium na GitHub
 
 1. Przejdź do https://github.com/Azornes/
 2. Kliknij przycisk "New" lub "+" w prawym górnym rogu
@@ -12,7 +33,7 @@
    - **NIE zaznaczaj**: "Add a README file", "Add .gitignore", "Choose a license" (mamy już te pliki)
 5. Kliknij "Create repository"
 
-## Krok 2: Wypchnij kod na GitHub
+### Krok 2: Wypchnij kod na GitHub
 
 Po utworzeniu repozytorium uruchom te komendy w terminalu:
 
