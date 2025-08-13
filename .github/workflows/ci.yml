@@ -51,6 +51,13 @@ jobs:
           libglib2.0-0 \
           xvfb
 
+    - name: Install XQuartz (macOS)
+      if: runner.os == 'macOS'
+      run: |
+        brew install --cask xquartz
+        # Wait for XQuartz to be available
+        sleep 5
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -73,7 +80,8 @@ jobs:
         python -c "import sys; sys.path.insert(0, 'src'); from src.utils.config import LANGUAGES; print('Config import successful')"
         python -c "import sys; sys.path.insert(0, 'src'); from src.backend.translation_backend import TranslationManager; print('Backend import successful')"
 
-    - name: Test application startup (headless)
+    - name: Test application startup (headless - Linux/Windows)
+      if: runner.os != 'macOS'
       run: |
         python -c "
         import sys, os
@@ -103,7 +111,42 @@ jobs:
         print('Application startup test completed successfully')
         "
 
-    - name: Test main.py execution (headless)
+    - name: Test application startup (headless - macOS with Xvfb)
+      if: runner.os == 'macOS'
+      run: |
+        export DISPLAY=:99
+        Xvfb :99 -screen 0 1024x768x24 &
+        sleep 3
+        python -c "
+        import sys, os
+        sys.path.insert(0, 'src')
+        os.environ['DISPLAY'] = ':99'
+        from src.gui.translator_app import QApplication, TranslatorApp
+        app = QApplication([])
+        print('QApplication created successfully on macOS with Xvfb')
+
+        # Test main application window creation
+        main_window = TranslatorApp()
+        print('TranslatorApp window created successfully on macOS')
+
+        # Test basic functionality
+        assert hasattr(main_window, 'translation_manager')
+        assert hasattr(main_window, 'source_combo')
+        assert hasattr(main_window, 'target_combo')
+        print('Main window components verified on macOS')
+
+        # Test window can be shown with real X11 backend
+        main_window.show()
+        print('Window show() method works on macOS with X11')
+
+        # Clean up
+        main_window.close()
+        app.quit()
+        print('Application startup test completed successfully on macOS')
+        "
+
+    - name: Test main.py execution (headless - Linux/Windows)
+      if: runner.os != 'macOS'
       run: |
         python -c "
         import sys, os
@@ -117,6 +160,24 @@ jobs:
         # Test main function exists
         assert hasattr(main, 'main'), 'main() function not found'
         print('main() function found')
+        "
+
+    - name: Test main.py execution (headless - macOS with Xvfb)
+      if: runner.os == 'macOS'
+      run: |
+        export DISPLAY=:99
+        python -c "
+        import sys, os
+        sys.path.insert(0, '.')
+        os.environ['DISPLAY'] = ':99'
+
+        # Test that main.py can be imported and executed
+        import main
+        print('main.py import successful on macOS')
+
+        # Test main function exists
+        assert hasattr(main, 'main'), 'main() function not found'
+        print('main() function found on macOS')
         "
 
   security:
