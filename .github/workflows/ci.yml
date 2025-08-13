@@ -47,7 +47,8 @@ jobs:
           libxcb-xinerama0 \
           libxcb-xfixes0 \
           libxcb-cursor0 \
-          libgl1-mesa-glx \
+          libgl1-mesa-dri \
+          libglib2.0-0 \
           xvfb
 
     - name: Install dependencies
