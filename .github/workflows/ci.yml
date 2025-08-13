@@ -1,12 +1,9 @@
 name: CI/CD Pipeline
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  workflow_dispatch:  # Manual trigger from GitHub Actions tab
   release:
-    types: [published]
+    types: [published]  # Automatic only for releases
 
 jobs:
   test:
