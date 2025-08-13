@@ -8,11 +8,11 @@ DEFAULT_MODEL_NAME = "seed-x-ppo-7b.gguf"
 
 # Model parameters
 MODEL_CONFIG = {
-    "n_ctx": 2048,          # Context window size
-    "n_threads": 8,         # Number of CPU threads
-    "n_gpu_layers": -1,     # -1 = all layers on GPU, 0 = all on CPU
-    "seed": -1,             # Random seed (-1 for random)
-    "verbose": False        # Print verbose output
+    "n_ctx": 2048,  # Context window size
+    "n_threads": 8,  # Number of CPU threads
+    "n_gpu_layers": -1,  # -1 = all layers on GPU, 0 = all on CPU
+    "seed": -1,  # Random seed (-1 for random)
+    "verbose": False,  # Print verbose output
 }
 
 # Generation parameters
@@ -22,7 +22,7 @@ GENERATION_CONFIG = {
     "top_p": 0.95,
     "top_k": 40,
     "repeat_penalty": 1.1,
-    "stop": ["</s>", "\n\n"]
+    "stop": ["</s>", "\n\n"],
 }
 
 # Supported languages
@@ -54,16 +54,11 @@ LANGUAGES = {
     "Turkish": "tr",
     "Ukrainian": "uk",
     "Vietnamese": "vi",
-    "Chinese": "zh"
+    "Chinese": "zh",
 }
 
 # UI Configuration
-UI_CONFIG = {
-    "window_width": 1200,
-    "window_height": 700,
-    "font_size": 11,
-    "max_history": 100
-}
+UI_CONFIG = {"window_width": 1200, "window_height": 700, "font_size": 11, "max_history": 100}
 
 # Application themes
 THEMES = {
@@ -73,7 +68,7 @@ THEMES = {
         "input_bg": "#ffffff",
         "output_bg": "#f8f8f8",
         "button_bg": "#0084ff",
-        "button_fg": "#ffffff"
+        "button_fg": "#ffffff",
     },
     "dark": {
         "bg": "#2b2b2b",
@@ -81,6 +76,6 @@ THEMES = {
         "input_bg": "#3c3c3c",
         "output_bg": "#404040",
         "button_bg": "#0084ff",
-        "button_fg": "#ffffff"
-    }
+        "button_fg": "#ffffff",
+    },
 }

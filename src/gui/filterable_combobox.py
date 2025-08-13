@@ -5,12 +5,14 @@ Custom Filterable ComboBox for PyQt6 with live filtering popup, no auto-completi
 from PyQt6.QtWidgets import QComboBox, QCompleter
 from PyQt6.QtCore import Qt, QStringListModel
 
+
 class FilterableComboBox(QComboBox):
     """
     A QComboBox with live filtering popup. No auto-completion in the line edit.
     Suggestions appear in a popup as you type, but text is not auto-completed.
     Select by clicking or pressing Enter on the desired item.
     """
+
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setEditable(True)
