@@ -55,8 +55,7 @@ jobs:
       if: runner.os == 'macOS'
       run: |
         brew install --cask xquartz
-        # Wait for XQuartz to be available
-        sleep 5
+        # Xvfb is not available on macOS, we'll use offscreen mode instead
 
     - name: Install dependencies
       run: |
@@ -87,18 +86,18 @@ jobs:
         import sys, os
         sys.path.insert(0, 'src')
         os.environ['QT_QPA_PLATFORM'] = 'offscreen'
-        from src.gui.translator_app import QApplication, TranslatorApp
+        from src.gui.translator_app import QApplication, TranslatorMainWindow
         app = QApplication([])
         print('QApplication created successfully')
 
         # Test main application window creation
-        main_window = TranslatorApp()
-        print('TranslatorApp window created successfully')
+        main_window = TranslatorMainWindow()
+        print('TranslatorMainWindow created successfully')
 
         # Test basic functionality
-        assert hasattr(main_window, 'translation_manager')
-        assert hasattr(main_window, 'source_combo')
-        assert hasattr(main_window, 'target_combo')
+        assert hasattr(main_window, 'manager')
+        assert hasattr(main_window, 'source_lang')
+        assert hasattr(main_window, 'target_lang')
         print('Main window components verified')
 
         # Test window can be shown (but not actually shown in headless)
@@ -111,33 +110,30 @@ jobs:
         print('Application startup test completed successfully')
         "
 
-    - name: Test application startup (headless - macOS with Xvfb)
+    - name: Test application startup (headless - macOS)
       if: runner.os == 'macOS'
       run: |
-        export DISPLAY=:99
-        Xvfb :99 -screen 0 1024x768x24 &
-        sleep 3
         python -c "
         import sys, os
         sys.path.insert(0, 'src')
-        os.environ['DISPLAY'] = ':99'
-        from src.gui.translator_app import QApplication, TranslatorApp
+        os.environ['QT_QPA_PLATFORM'] = 'offscreen'
+        from src.gui.translator_app import QApplication, TranslatorMainWindow
         app = QApplication([])
-        print('QApplication created successfully on macOS with Xvfb')
+        print('QApplication created successfully on macOS')
 
         # Test main application window creation
-        main_window = TranslatorApp()
-        print('TranslatorApp window created successfully on macOS')
+        main_window = TranslatorMainWindow()
+        print('TranslatorMainWindow created successfully on macOS')
 
         # Test basic functionality
-        assert hasattr(main_window, 'translation_manager')
-        assert hasattr(main_window, 'source_combo')
-        assert hasattr(main_window, 'target_combo')
+        assert hasattr(main_window, 'manager')
+        assert hasattr(main_window, 'source_lang')
+        assert hasattr(main_window, 'target_lang')
         print('Main window components verified on macOS')
 
-        # Test window can be shown with real X11 backend
+        # Test window can be shown (but not actually shown in headless)
         main_window.show()
-        print('Window show() method works on macOS with X11')
+        print('Window show() method works on macOS')
 
         # Clean up
         main_window.close()
@@ -162,14 +158,13 @@ jobs:
         print('main() function found')
         "
 
-    - name: Test main.py execution (headless - macOS with Xvfb)
+    - name: Test main.py execution (headless - macOS)
       if: runner.os == 'macOS'
       run: |
-        export DISPLAY=:99
         python -c "
         import sys, os
         sys.path.insert(0, '.')
-        os.environ['DISPLAY'] = ':99'
+        os.environ['QT_QPA_PLATFORM'] = 'offscreen'
 
         # Test that main.py can be imported and executed
         import main
