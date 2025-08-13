@@ -102,7 +102,6 @@ jobs:
         app.quit()
         print('Application startup test completed successfully')
         "
-      if: runner.os != 'macOS'  # Skip on macOS due to Qt issues in CI
 
     - name: Test main.py execution (headless)
       run: |
@@ -119,7 +118,6 @@ jobs:
         assert hasattr(main, 'main'), 'main() function not found'
         print('main() function found')
         "
-      if: runner.os != 'macOS'  # Skip on macOS due to Qt issues in CI
 
   security:
     runs-on: ubuntu-latest
